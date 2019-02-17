@@ -1,12 +1,13 @@
 import json
-#todo validate paths to files exist
+import sys
+#todo create args for passwd and group files/validate paths to files exist. if not, use the defaults
 file = "/etc/passwd"
 file2 = "/etc/group"
+outFile = "/mnt/out.json"
 f1 = open(file, 'r')
 f2 = open(file2, 'r')
 
 users = {}
-out = {}
 
 def get_group(x):
   groups = []
@@ -28,6 +29,6 @@ def buildJSON(get_group):
     users[fields[0]] = {"full_name": fields[0],"uid": fields[2],"group_name": groups}
 
 buildJSON(get_group)
-#todo out this to a json file on local via docker filesys mount
-out = json.dumps(users)
-      
+
+with open(outFile, 'w') as out:
+    json.dump(users, out)
