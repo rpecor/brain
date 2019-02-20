@@ -1,9 +1,9 @@
 Quick Start --- To execute the quick start, you must have Docker installed.
-1. Clone this repo: git clone https://github.com/rpecor/brain.git
+1. Clone this repo: 'git clone https://github.com/rpecor/brain.git'
 
-2. Navigate to the brain directory and build the docker image: docker build -t brain-py .
+2. Navigate to the brain directory and build the docker image: 'docker build -t brain-py .'
 
-3. From within the cloned directory run: docker run -d -v $(pwd):/mnt brain-py python run.py
+3. From within the cloned directory run: 'docker run -d -v $(pwd):/mnt brain-py python run.py'
 
 An out.json file will be generated in the current directory with the containers user information
 
@@ -18,3 +18,8 @@ I'd like to add some better argument logic, if just one of the paths are needed 
 
 It would probably be worth dynamically generating the file name so its not always overwritten. Then clean up out.json files that are a certain age.
 And no reason to run if the passwd and group files haven't changed.
+
+Bonus:
+
+Feel free to add users and/or groups by extending the RUN commands in the Dockerfile. 
+Just be sure to rebuild the image.
