@@ -21,6 +21,7 @@ except IOError:
 
 users = {}
 
+#Finding all of a users groups
 def get_group(x):
   groups = []
   for line in f2:
@@ -28,19 +29,18 @@ def get_group(x):
     fields = line.split(":")
     names = fields[3]
     val = names.split(",")
-    print(val)
     for v in val:
-      print(v)
       if (x == v):
-        groups.append(v)
-    return groups
+        groups.append(fields[0])
+  f2.seek(0)
+  return groups
 
+#Entry function and json builder
 def buildJSON(get_group):
   for line in f1:
     line = line.strip()
     fields = line.split(":")
     groups = get_group(str(fields[0]))
-    print(groups)
     users[fields[0]] = {"full_name": fields[0],"uid": fields[2],"group_name": groups}
 
 buildJSON(get_group)
